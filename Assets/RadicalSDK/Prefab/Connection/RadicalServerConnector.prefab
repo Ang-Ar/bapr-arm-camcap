@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1700368278572969406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1700368278572969405}
+  - component: {fileID: 549075076174949912}
+  - component: {fileID: 1700368278572969394}
+  - component: {fileID: 1700368278572969404}
+  - component: {fileID: 544433936626805398}
+  m_Layer: 0
+  m_Name: RadicalServerConnector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1700368278572969405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700368278572969406}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &549075076174949912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700368278572969406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4bec9ff6208288439c99d675f5f2329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accountKey: Password
+  password: 
+  useOverrideWebSocketURL: 0
+  overrideWebsocketURL: wss://live-room-handler.radicalmotion.com
+  radicalRoomID: Insert Room ID
+  isConnected: 0
+--- !u!114 &1700368278572969394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700368278572969406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c67d0ccb759e9ff43a9e6bd186827103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCharacter: {fileID: 0}
+  allCharacters: []
+  connector: {fileID: 549075076174949912}
+--- !u!114 &1700368278572969404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700368278572969406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4a054a857613d4f9a0bd9d858aee52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radicalCharacterPrefab: {fileID: 590472979793570598, guid: 2e7dbff8090c4574c9e5004c34de53f5, type: 3}
+  radicalCharacterDriver: {fileID: 4341833053682819869, guid: 13f2fa8130d81ff4f9f471c17549b43b, type: 3}
+--- !u!114 &544433936626805398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700368278572969406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d200c160b53945458650a37433382d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

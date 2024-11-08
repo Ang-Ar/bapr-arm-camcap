@@ -1,0 +1,3 @@
+[submodule "Assets/BlenderConstraints"]
+	path = Assets/BlenderConstraints
+	url = https://github.com/Ang-Ar/blender-constraints-for-unity.git

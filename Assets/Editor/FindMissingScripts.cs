@@ -3,15 +3,16 @@ using UnityEditor;
 
 // Source:
 // https://web.archive.org/web/20130514114424/http://wiki.unity3d.com/index.php/FindMissingScripts
+// slightly edited by Joren Van Borm
 
 public class FindMissingScriptsRecursively : EditorWindow
 {
     static int go_count = 0, components_count = 0, missing_count = 0;
 
-    [MenuItem("Window/FindMissingScripts")]
+    [MenuItem("Window/Find Missing Scripts")]
     public static void ShowWindow()
     {
-        EditorWindow.GetWindow(typeof(FindMissingScriptsRecursively));
+        EditorWindow.GetWindow<FindMissingScriptsRecursively>();
     }
 
     public void OnGUI()

@@ -1395,6 +1395,11 @@ PrefabInstance:
       propertyPath: radicalRoomID
       value: 4ad7b61c-ffe3-42a5-bcfd-9cb4406e96fa
       objectReference: {fileID: 0}
+    - target: {fileID: 549075076174949912, guid: fd49b17b715d3ad4a8568649e01f3137,
+        type: 3}
+      propertyPath: useOverrideWebSocketURL
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1700368278572969394, guid: fd49b17b715d3ad4a8568649e01f3137,
         type: 3}
       propertyPath: defaultCharacter
@@ -1488,8 +1493,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1700368278572969406, guid: fd49b17b715d3ad4a8568649e01f3137,
+        type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 2141529344}
   m_SourcePrefab: {fileID: 100100000, guid: fd49b17b715d3ad4a8568649e01f3137, type: 3}
+--- !u!1 &2141529343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1700368278572969406, guid: fd49b17b715d3ad4a8568649e01f3137,
+    type: 3}
+  m_PrefabInstance: {fileID: 2141529342}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2141529344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141529343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47420a664ad368f4fa6726ff8d06c174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room: {fileID: 11400000, guid: 263839fdcd2fdfd42aa3827ce83adf0b, type: 2}
 --- !u!4 &2144889894 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7666680083751660616, guid: 1bd660b0174210345b4d6767877c6e29,

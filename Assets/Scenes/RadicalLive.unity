@@ -1199,7 +1199,7 @@ PrefabInstance:
     - target: {fileID: 1700368278572969394, guid: fd49b17b715d3ad4a8568649e01f3137,
         type: 3}
       propertyPath: allCharacters.Array.data[0].isBaking
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1700368278572969394, guid: fd49b17b715d3ad4a8568649e01f3137,
         type: 3}
@@ -1303,7 +1303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47420a664ad368f4fa6726ff8d06c174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  room: {fileID: 11400000, guid: 8731dbba037489241b693a45635dadd7, type: 2}
+  room: {fileID: 11400000, guid: 263839fdcd2fdfd42aa3827ce83adf0b, type: 2}
 --- !u!4 &2144889894 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7666680083751660616, guid: 1bd660b0174210345b4d6767877c6e29,

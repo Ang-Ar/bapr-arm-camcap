@@ -289,7 +289,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9d3ba8271c8b1c44e9cafd0c10feef1f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9d3ba8271c8b1c44e9cafd0c10feef1f,
         type: 3}
@@ -299,7 +299,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9d3ba8271c8b1c44e9cafd0c10feef1f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.2
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9d3ba8271c8b1c44e9cafd0c10feef1f,
         type: 3}
@@ -340,6 +340,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DollarsRobot
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9d3ba8271c8b1c44e9cafd0c10feef1f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -632,17 +637,17 @@ PrefabInstance:
     - target: {fileID: 1538965807100831316, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0390208
+      value: 0.039020833
       objectReference: {fileID: 0}
     - target: {fileID: 1538965807100831316, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.002957587
+      value: 0.0029575864
       objectReference: {fileID: 0}
     - target: {fileID: 1538965807100831316, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0023856258
+      value: 0.0023856612
       objectReference: {fileID: 0}
     - target: {fileID: 1538965807100831316, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
@@ -732,12 +737,12 @@ PrefabInstance:
     - target: {fileID: 6435730744169443010, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0029625117
+      value: -0.002962513
       objectReference: {fileID: 0}
     - target: {fileID: 6435730744169443010, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.05300584
+      value: 0.053005815
       objectReference: {fileID: 0}
     - target: {fileID: 6553998708745274477, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
@@ -762,7 +767,7 @@ PrefabInstance:
     - target: {fileID: 7423247911850225836, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7423247911850225836, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
@@ -999,7 +1004,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.05
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -1027,13 +1032,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944380036}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.000014796851}
+  m_LocalPosition: {x: 0, y: 1.339, z: 1.133}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 179.998, z: 0}
 --- !u!114 &1944380040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,7 +1104,7 @@ PrefabInstance:
     - target: {fileID: 250539836568482204, guid: 2e7dbff8090c4574c9e5004c34de53f5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 250539836568482204, guid: 2e7dbff8090c4574c9e5004c34de53f5,
         type: 3}
@@ -1140,6 +1145,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RadicalCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 590472979793570598, guid: 2e7dbff8090c4574c9e5004c34de53f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1406305333340566614, guid: 2e7dbff8090c4574c9e5004c34de53f5, type: 3}

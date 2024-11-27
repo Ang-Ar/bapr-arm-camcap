@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RadicalPlayback.unity
     guid: 8964d404fba7092449044152d133df69
+  - enabled: 1
+    path: Assets/Scenes/DollarsMocap.unity
+    guid: bd18dcff0e165734f94da0f89879adb9
+  - enabled: 1
+    path: Assets/Scenes/Empty.unity
+    guid: c32aa5a555f876443a3170d51f38262b
   m_configObjects: {}

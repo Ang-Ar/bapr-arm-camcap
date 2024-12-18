@@ -467,7 +467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1319151108}
-  clip: {fileID: 7400000, guid: 70c77957edc6ef74dad019cded3f9dc7, type: 2}
+  clip: {fileID: 7400000, guid: 2eebfb570cfc0624ab5218778811da05, type: 2}
   basePlaybackController: {fileID: 9100000, guid: 182a1e8bc7c4f4845873714b05d36418,
     type: 2}
 --- !u!1001 &1665089969
@@ -1062,7 +1062,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 8fb9ff73f5156b74cb1373f364439e8b, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 3636197377898611261, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -1,150 +1,159 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
 using UnityEngine;
+using UnityEngine.Splines;
 
 [ExecuteAlways]
 public class Cable : MonoBehaviour
 {
+    public enum RenderMode
+    {
+        mesh,
+        line,
+    }
+
     [SerializeField] Transform anchorStart;
     [SerializeField] float startWeight = 0f;
     [SerializeField] Transform anchorEnd;
     [SerializeField] float endWeight = 0f;
-    [SerializeField] float weightAlignmentFactor = 1f;
-    public int resolution; // resolution zero means no subdivisions, i.e. a straight line between anchors
-    Vector3[] lineSegments = new Vector3[0];
 
+    [SerializeField] float weightAlignmentFactor = 1f;
     [SerializeField] bool useMidpoint = false;
 
-#if UNITY_EDITOR
-    [SerializeField] bool drawDebugGizmos;
-#endif
+    [SerializeField] 
 
-    #region cache
+    [Space]
+    public RenderMode displayMode = RenderMode.mesh;
+    public float radius = 0.1f;
+    public int resolution = 20; // resolution zero means no subdivisions, i.e. a straight line between anchors
+    public int sides = 3;
+    public bool capped = false;
 
-    // control points auto-configured using anchor points & weights (see UpdateSegments())
-    Vector3 controlStart;
-    Vector3 controlEnd;
-    Vector3[] splinePoints = new Vector3[0];
-    
-    #endregion
+    [SerializeField] MeshFilter meshFilter;
+    [SerializeField] LineRenderer lineRenderer;
+
+
+    Spline finalSpline = new Spline(3);
 
     private void OnValidate()
     {
         resolution = resolution < 0 ? 0 : resolution;
         weightAlignmentFactor = weightAlignmentFactor < 0f ? 0f : weightAlignmentFactor;
-        UpdateSegments(ref lineSegments, resolution);
+
+        UpdateSplines();
+        UpdateVisuals();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        UpdateSegments(ref lineSegments, resolution);
+        meshFilter.mesh = new Mesh();
+        finalSpline.SetTangentMode(TangentMode.Broken);
+
+        UpdateSplines();
+        UpdateVisuals();
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateSegments(ref lineSegments, resolution);
+        UpdateSplines();
+        UpdateVisuals();
     }
 
-    public void UpdateSegments(ref Vector3[] segments, int resolution)
+    public void UpdateSplines()
     {
         // alignment is based on similarity of (a) tangent given by control point and (b) direction to other end.
         // range (0, 1) from total misalignment to total alignment
         float startAlignment = Mathf.InverseLerp(-1f, 1f, Vector3.Dot(anchorStart.up, (anchorEnd.position - anchorStart.position).normalized));
         float endAlignment = Mathf.InverseLerp(-1f, 1f, Vector3.Dot(anchorEnd.up, (anchorStart.position - anchorEnd.position).normalized));
 
-        // compute control point positions
-        // the more misaligned, the more compensation
-        controlStart = anchorStart.position + anchorStart.up * startWeight * Mathf.Lerp(weightAlignmentFactor, 1, startAlignment);
-        controlEnd = anchorEnd.position + anchorEnd.up * endWeight * Mathf.Lerp(weightAlignmentFactor, 1, endAlignment);
+        // compute tangents (used to set bezier handles)
+        // the more misaligned, the more pronounced the tangents (as if cable resists bending)
+        Vector3 startTangent = anchorStart.up * startWeight * Mathf.Lerp(weightAlignmentFactor, 1, startAlignment);
+        Vector3 endTangent = anchorEnd.up * endWeight * Mathf.Lerp(weightAlignmentFactor, 1, endAlignment);
 
-        // compute spline points (first and last point are on-curve)
-        if (splinePoints.Length != 4) splinePoints = new Vector3[] {anchorStart.position, controlStart, controlEnd, anchorEnd.position };
+        // make a single bezier curve segment from start to end point
+        BezierCurve baseCurve = BezierCurve.FromTangent(anchorStart.position, startTangent, anchorEnd.position, endTangent);
 
-        // midpoint to be used for jiggle etc
-        if (useMidpoint)
+        // if not using midpoint for physics, the one segment is enough and we are done
+        if (! useMidpoint)
         {
-            splinePoints = new Vector3[] { anchorStart.position, controlStart, EvaluateAt(0.5f), controlEnd, anchorEnd.position };
+            finalSpline.Knots = KnotsFromCurves(new BezierCurve[] { baseCurve });
+            return;
         }
 
-        if (segments.Length-2 != resolution)
+        // split bezier curve into two parts
+        BezierCurve firstCurve;
+        BezierCurve secondCurve;
+        CurveUtility.Split(baseCurve, 0.5f, out firstCurve, out secondCurve);
+
+        // combine both segments into a single spline
+        finalSpline.Knots = KnotsFromCurves(new BezierCurve[] { firstCurve, secondCurve });
+    }
+
+    public void UpdateVisuals()
+    {
+        if (displayMode == RenderMode.mesh && meshFilter != null)
         {
-            segments = new Vector3[resolution+2];
+            SplineMesh.Extrude(finalSpline, meshFilter.mesh, radius, sides, resolution+1, capped);
+        }
+        else
+        {
+            meshFilter.mesh.Clear();
         }
 
-        for (int i=0; i<resolution+2; i++)
+        if (displayMode == RenderMode.line && lineRenderer != null)
         {
-            float curveParameter = Mathf.InverseLerp(0, resolution+1, i);
-            segments[i] = EvaluateAt(curveParameter);
+            lineRenderer.positionCount = resolution+2;
+            lineRenderer.SetPositions(LineSegmentsFromSpline(finalSpline, resolution));
+            lineRenderer.startWidth = radius*2;
+            lineRenderer.endWidth = radius*2;
+        }
+        else
+        {
+            lineRenderer.positionCount = 0;
         }
     }
 
-    public Vector3 EvaluateAt(float parameter)
+    static public IEnumerable<BezierKnot> KnotsFromCurves(IList<BezierCurve> curves)
     {
-        return interpolateSegment(splinePoints, parameter);
-    }
-
-    public Vector3 interpolateSegment(Vector3[] points, float parameter)
-    {
-        // first and last points of the list act as anchors, the rest as control points
-        // (ergo more points = higher degree of interpolation)
-
-        points = (Vector3[])points.Clone(); // not sure if performant. But then, neither is this entire function
-
-        for (int degree = 1; degree < points.Length; degree++)
+        BezierKnot[] knots = new BezierKnot[curves.Count+1];
+        for (int i = 0; i<curves.Count; i++)
         {
-            for (int i = 0; i < points.Length-degree; i++)
-            {
-                points[i] = Vector3.Lerp(points[i], points[i+1], parameter);
-            }
+            knots[i].Position = curves[i].P0;
+            knots[i].TangentOut = curves[i].Tangent0;
+            knots[i+1].TangentIn = curves[i].Tangent1;
         }
-
-        return points[0];
+        knots[knots.Length-1].Position = curves[curves.Count-1].P3;
+        return knots;
     }
 
-    public Vector3 interpolateCubic(Vector3 anchorA, Vector3 controlA, Vector3 controlB, Vector3 anchorB, float parameter)
+    static public Vector3[] LineSegmentsFromSpline(ISpline spline, int resolution)
     {
-        // not a performant implementation but a very conceptually clear one
-
-        // first degree interpolations
-        Vector3 startInfluence = Vector3.Lerp(anchorA, controlA, parameter);
-        Vector3 midInfluence = Vector3.Lerp(controlA, controlB, parameter);
-        Vector3 endInfluence = Vector3.Lerp(controlB, anchorB, parameter);
-
-        // second degree interpolations
-        Vector3 segmentOneInfluence = Vector3.Lerp(startInfluence, midInfluence, parameter);
-        Vector3 segmentTwoInfluence = Vector3.Lerp(midInfluence, endInfluence, parameter);
-
-        // third degree interpolations
-        return Vector3.Lerp(segmentOneInfluence, segmentTwoInfluence, parameter);
+        Vector3[] result = new Vector3[resolution + 2];
+        for (int i = 0; i < result.Length; i++)
+        {
+            result[i] = SplineUtility.EvaluatePosition(spline, i / (result.Length - 1f));
+        }
+        return result;
     }
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
-        for (int i = 0; i < lineSegments.Length - 1; i++)
+        Vector3[] segmentPts = LineSegmentsFromSpline(finalSpline, resolution);
+        for (int i = 0; i < segmentPts.Length - 1; i++)
         {
-            Gizmos.DrawLine(lineSegments[i], lineSegments[i + 1]);
-        }
-
-        if (!drawDebugGizmos) return;
-
-        for (int i = 0; i < lineSegments.Length; i++)
-        {
-            Gizmos.DrawSphere(lineSegments[i], 0.01f);
+            Gizmos.DrawLine(segmentPts[i], segmentPts[i + 1]);
         }
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(anchorStart.position, controlStart);
-        Gizmos.DrawLine(anchorEnd.position, controlEnd);
-
-        foreach (Vector3 point in splinePoints)
+        foreach(BezierKnot knot in finalSpline)
         {
-            Gizmos.DrawSphere(point, 0.01f);
+            Gizmos.DrawSphere(knot.Position, 0.01f);
+            Gizmos.DrawRay(knot.Position, knot.TangentIn);
+            Gizmos.DrawRay(knot.Position, knot.TangentOut);
         }
     }
 #endif // UNITY_EDITOR

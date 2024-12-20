@@ -2,7 +2,7 @@ using UnityEngine.Assertions;
 
 public interface IFilter<T, U>
 {
-    public U Filter(T data);
+    public U Filter(T measurement);
 }
 
 /// <summary>

@@ -16,6 +16,7 @@ public class SpringFilter : IVectorFilter
 
     public SpringFilter()
     {
+        // need two past results to esitmate velocity of spring-damped object
         data = new VectorFilterData(0, 2);
     }
 
@@ -52,5 +53,41 @@ public class SpringFilter : IVectorFilter
 
         data.AddResult(position);
         return position;
+    }
+}
+
+[System.Serializable]
+public class MeanVectorFilter : IVectorFilter
+{
+    [SerializeField] int itemCount;
+
+    VectorFilterData data;
+
+    public MeanVectorFilter(int itemCount)
+    {
+        Assert.IsFalse(itemCount < 0);
+        // n items = current item + (n - 1) pat items => degree (n - 1)
+        data = new VectorFilterData(inputDegree: itemCount-1, outputDegree: 0);
+    }
+
+    public void ClearInputbuffer(Vector3 value)
+    {
+        data.ClearMeasurementbuffer(value);
+    }
+
+    public void ClearOutputbuffer(Vector3 value)
+    {
+        data.ClearResultBuffer(value);
+    }
+
+    public Vector3 Filter(Vector3 measurement)
+    {
+        data.AddMeasurement(measurement);
+        Vector3 sum = Vector3.zero;
+        for (int i=0; i<itemCount; i++)
+        {
+            sum += data.GetMeasurement(i);
+        }
+        return sum / itemCount;
     }
 }

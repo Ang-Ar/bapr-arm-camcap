@@ -2,6 +2,8 @@ using UnityEngine.Assertions;
 
 public interface IFilter<T, U>
 {
+    public void ClearInputbuffer(T value);
+    public void ClearOutputbuffer(U value);
     public U Filter(T measurement);
 }
 
@@ -38,7 +40,7 @@ public class FilterData<T, U>
 
     public FilterData(int inputDegree, int outputDegree, T initialMeasurements, U initialResults)
     {
-        measurementHistory = new CircularBuffer<T>(inputDegree, initialMeasurements);
+        measurementHistory = new CircularBuffer<T>(inputDegree+1, initialMeasurements);
         resultHistory = new CircularBuffer<U>(outputDegree, initialResults);
     }
 
@@ -51,4 +53,14 @@ public class FilterData<T, U>
 
     // call after all calculations for the corresponding measurement to ensure delay is correct
     public U GetResult(int delay) => resultHistory[delay - 1];
+
+    public void ClearMeasurementbuffer(T value)
+    {
+        measurementHistory.Clear(value);
+    }
+
+    public void ClearResultBuffer(U value)
+    {
+        resultHistory.Clear(value);
+    }
 }

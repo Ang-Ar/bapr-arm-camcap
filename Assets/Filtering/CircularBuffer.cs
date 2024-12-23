@@ -59,6 +59,11 @@ public class CircularBuffer<T>: IReadOnlyList<T>, ICollection<T>
         throw new NotSupportedException("CircularBuffer is read-only with the exception of Add()");
     }
 
+    public void Clear(T value)
+    {
+        Array.Fill(values, value);
+    }
+
     public bool Contains(T item)
     {
         return ((ICollection<T>)values).Contains(item);

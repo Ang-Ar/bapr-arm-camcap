@@ -14,9 +14,19 @@ public class SpringFilter : IVectorFilter
 
     VectorFilterData data;
 
-    SpringFilter()
+    public SpringFilter()
     {
         data = new VectorFilterData(0, 2);
+    }
+
+    public void ClearInputbuffer(Vector3 value)
+    {
+        data.ClearMeasurementbuffer(value);
+    }
+
+    public void ClearOutputbuffer(Vector3 value)
+    {
+        data.ClearResultBuffer(value);
     }
 
     public Vector3 Filter(Vector3 measurement)
@@ -25,15 +35,19 @@ public class SpringFilter : IVectorFilter
         Vector3 position = data.GetResult(1);
         Vector3 velocity = data.GetVelocity(1, recursive: true);
 
-        Vector3 springForce = (springLength - Vector3.Distance(data.GetMeasurement(0), data.GetResult(1)))
+        Vector3 springForce = (Vector3.Distance(measurement, position) - springLength)
             * springConstant
             * (measurement - position).normalized;
 
-        Vector3 dampingForce = velocity * dampingFactor;
-
         Vector3 gravityForce = mass * gravityConstant;
 
-        velocity += springForce + dampingForce + gravityForce;
+        velocity += (springForce + gravityForce) / mass;
+
+        // calculate damping after updating velocity for more accurate behaviour
+        Vector3 dampingForce = velocity * dampingFactor;
+        // damping force ignores mass for simplicity (easier to configure in-editor)
+        velocity -= dampingForce;
+
         position += velocity;
 
         data.AddResult(position);

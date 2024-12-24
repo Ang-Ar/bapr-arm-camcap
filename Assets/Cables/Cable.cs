@@ -102,7 +102,14 @@ public class Cable : MonoBehaviour
     {
         if (displayMode == RenderMode.mesh && meshFilter != null)
         {
-            SplineMesh.Extrude(finalSpline, meshFilter.mesh, radius, sides, resolution+1, capped);
+            Spline localSpline = new Spline(finalSpline);
+            for (int i = 0; i < localSpline.Count; i++)
+            {
+                BezierKnot knot = localSpline[i];
+                knot.Position = meshFilter.transform.InverseTransformPoint(knot.Position);
+                localSpline[i] = knot;
+            }
+            SplineMesh.Extrude(localSpline, meshFilter.mesh, radius, sides, resolution+1, capped);
         }
         else
         {

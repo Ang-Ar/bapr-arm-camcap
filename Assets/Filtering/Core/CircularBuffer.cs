@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// 
@@ -38,7 +39,13 @@ public class CircularBuffer<T>: IReadOnlyList<T>, ICollection<T>
 
     // indices are relative to the head, reversed, and wrap around the array bounds
     // remember that head points one item past the most recently inserted one
-    public T this[int index] => values[Math.Sign(head-index-1) * (head-index-1) % values.Length];
+    // to wrap negative indices:
+    //   (n) is conceptually in range (-inf, inf)
+    //   => (n % length) is in range (-length+1, length-1)
+    //   => (n % length + length) is in range (0, 2*length-1)
+    //   => ((n % length + length) % length) is in (0, length-1)
+    // all of this maintains the value of n mod length
+    public T this[int index] => values[((head-index-1) % values.Length + values.Length) % values.Length];
 
     public int Count => values.Length;
 

@@ -1,4 +1,10 @@
-using UnityEngine.Assertions;
+
+using UnityEngine;
+
+public abstract class FilterAsset<T, U> : ScriptableObject
+{
+    abstract public IFilter<T, U> GetFilter();
+}
 
 public interface IFilter<T, U>
 {
@@ -29,6 +35,9 @@ public class FilterData<T, U>
 {
     CircularBuffer<T> measurementHistory;
     CircularBuffer<U> resultHistory;
+
+    public int MeasurementDegree { get => measurementHistory.Count - 1; }
+    public int ResultDegree { get => measurementHistory.Count; }
 
     // input degree n: store n past measurements (in addition to the current one)
     // output degree m: store m past results (m-th result is forgotten as soon as new result is registered)

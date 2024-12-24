@@ -1,6 +1,12 @@
 using UnityEngine;
 
 // mostly here to enable polymorphism
+public abstract class VectorFilterAsset: FilterAsset<Vector3, Vector3>
+{
+    abstract public IVectorFilter GetVectorFilter();
+}
+
+// mostly here to enable polymorphism
 public interface IVectorFilter: IFilter<Vector3, Vector3>
 {
     

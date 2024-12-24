@@ -17,9 +17,9 @@ public class Cable : MonoBehaviour
     [SerializeField] float endWeight = 0f;
 
     [SerializeField] float weightAlignmentFactor = 1f;
-    [SerializeField] bool useMidpoint = false;
+    [SerializeField] bool useSpring = false;
 
-    [SerializeField] 
+    [SerializeField] SpringFilter spring;
 
     [Space]
     public RenderMode displayMode = RenderMode.mesh;
@@ -76,7 +76,7 @@ public class Cable : MonoBehaviour
         BezierCurve baseCurve = BezierCurve.FromTangent(anchorStart.position, startTangent, anchorEnd.position, endTangent);
 
         // if not using midpoint for physics, the one segment is enough and we are done
-        if (! useMidpoint)
+        if (! useSpring)
         {
             finalSpline.Knots = KnotsFromCurves(new BezierCurve[] { baseCurve });
             return;
@@ -89,6 +89,13 @@ public class Cable : MonoBehaviour
 
         // combine both segments into a single spline
         finalSpline.Knots = KnotsFromCurves(new BezierCurve[] { firstCurve, secondCurve });
+
+        // simulate spring physics on center knot
+        // SpringFilter internally stores velocity & position of the final knot
+        // all we need to do is feed it a new "target position" (where the virual spring is attached)
+        BezierKnot centerKnot = finalSpline[1];
+        centerKnot.Position = spring.Filter(finalSpline[1].Position);
+        finalSpline[1] = centerKnot;
     }
 
     public void UpdateVisuals()

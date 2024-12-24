@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8271450985532416123}
   m_Layer: 0
-  m_Name: spring test setup
+  m_Name: filter test setup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,6 +128,8 @@ GameObject:
   - component: {fileID: 6663722169092616424}
   - component: {fileID: 630769517477808029}
   - component: {fileID: 5691566784228480658}
+  - component: {fileID: 8874584995455403206}
+  - component: {fileID: 803462416317334011}
   m_Layer: 0
   m_Name: TGT
   m_TagString: Untagged
@@ -207,7 +209,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6567207547862768220}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2cbc14e6dd759584a81f001c69f1350b, type: 3}
   m_Name: 
@@ -215,8 +217,42 @@ MonoBehaviour:
   constrained: {fileID: 7390551664177329298}
   target: {fileID: 4805624816182396762}
   filter:
-    mass: 2
-    springLength: 0
-    springConstant: 1
-    dampingFactor: 0.5
-    gravityConstant: {x: 0, y: 0, z: 0}
+    settings:
+      mass: 2
+      springLength: 0
+      springConstant: 1
+      dampingFactor: 0.5
+      gravityConstant: {x: 0, y: 0, z: 0}
+--- !u!114 &8874584995455403206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6567207547862768220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca8bd3f06edbfe54085e94920728d51f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  constrained: {fileID: 7390551664177329298}
+  target: {fileID: 4805624816182396762}
+  positionFilterAsset: {fileID: 11400000, guid: 440412ba71e1da14ca5228991687045c,
+    type: 2}
+--- !u!114 &803462416317334011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6567207547862768220}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d529baae708ad884c8f2bb7b1a7935a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  constrained: {fileID: 7390551664177329298}
+  target: {fileID: 4805624816182396762}
+  filter:
+    settings:
+      itemCount: 25

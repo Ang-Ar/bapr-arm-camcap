@@ -38,6 +38,7 @@ public class SimpleFPSTool : MonoBehaviour
         measurementCycle++;
     }
 
+#if DEBUG
     void OnGUI()
     {
         GUILayout.Label($"Current FPS: {MathF.Round(1f/savedAvg)}");
@@ -45,4 +46,5 @@ public class SimpleFPSTool : MonoBehaviour
         GUILayout.Label($"Vsync: {QualitySettings.vSyncCount}");
         GUILayout.Label($"Display refresh rate: {Math.Round(Screen.currentResolution.refreshRateRatio.value)}");
     }
+#endif // DEBUG
 }

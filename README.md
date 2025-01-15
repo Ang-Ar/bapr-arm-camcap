@@ -1,11 +1,16 @@
 # A.R.M. exhibition
 ## Virtuele mechanische arm met realtime motion capture
 
-Versie 0.1 - fallback
+Door Joren Van Borm
 
-## Opmerkingen
+Versie 1.0 - scriptie
 
-Project files voor Unity 2022.3.36f1
+## Links etc
+
+Dit zijn de project files voor Unity 2022.3.36f1
+
+Andere documenten:
+https://drive.google.com/drive/folders/18HI-JCxOxCB3HZCL_mVXYgRnS6FQn9Mn?usp=drive_link
 
 Blender Constraints submodule:
 https://github.com/Ang-Ar/blender-constraints-for-unity

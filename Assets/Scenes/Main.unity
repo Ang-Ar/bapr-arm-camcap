@@ -183,7 +183,7 @@ Light:
   m_InnerSpotAngle: 68.481384
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -219,7 +219,7 @@ Light:
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0.5
   m_ColorTemperature: 4617
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -884,7 +884,7 @@ Light:
   m_InnerSpotAngle: 106.4096
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -920,7 +920,7 @@ Light:
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0.5
   m_ColorTemperature: 4617
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -1523,17 +1523,17 @@ PrefabInstance:
     - target: {fileID: 6435730744169443010, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.039066106
+      value: -0.039066155
       objectReference: {fileID: 0}
     - target: {fileID: 6435730744169443010, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.002962513
+      value: -0.0029625155
       objectReference: {fileID: 0}
     - target: {fileID: 6435730744169443010, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.053005815
+      value: 0.053005848
       objectReference: {fileID: 0}
     - target: {fileID: 6553998708745274477, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}

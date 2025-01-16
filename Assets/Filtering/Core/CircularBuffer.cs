@@ -83,7 +83,8 @@ public class CircularBuffer<T>: IReadOnlyList<T>, ICollection<T>
 
     public IEnumerator<T> GetEnumerator()
     {
-        return (IEnumerator<T>) values.GetEnumerator();
+
+        return ((IEnumerable<T>)values).GetEnumerator();
     }
 
     public bool Remove(T item)

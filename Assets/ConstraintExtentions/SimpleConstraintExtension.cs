@@ -56,7 +56,12 @@ public abstract class SimpleConstraintExtension : MonoBehaviour, IBlenderConstra
 
     public virtual IBlenderConstraint ConvertComponent(bool useAnimationRigging, bool updateInEditMode = true, UpdateMode updateMode = UpdateMode.Update)
     {
-        throw new System.NotImplementedException();
+        if (useAnimationRigging)
+            throw new System.NotImplementedException();
+
+        this.updateInEditMode = updateInEditMode;
+        this.updateMode = updateMode;
+        return this;
     }
     #endregion
 }

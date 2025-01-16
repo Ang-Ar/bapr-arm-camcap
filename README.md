@@ -3,7 +3,7 @@
 
 Door Joren Van Borm
 
-Versie 1.0 - scriptie
+Versie 1.1 - presentatie
 
 ## Links etc
 

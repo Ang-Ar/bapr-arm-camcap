@@ -10,9 +10,9 @@ public class JointLimits : SimpleConstraintExtension
     Vector3 GlobalZAtRest => constrained.parent.TransformDirection(restPose * Vector3.forward);
 
     public EulerAxisOrder axisOrder = EulerAxisOrder.YXZ;
-    [Range(-180, 180)] public float xMin, xMax;
-    [Range(-180, 180)] public float yMin, yMax;
-    [Range(-180, 180)] public float zMin, zMax;
+    [Range(-180, 180)] public float xMin=-180, xMax=180;
+    [Range(-180, 180)] public float yMin=-180, yMax=180;
+    [Range(-180, 180)] public float zMin=-180, zMax=180;
 
     public override void ApplyConstraint()
     {

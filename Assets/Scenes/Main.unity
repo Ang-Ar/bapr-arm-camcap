@@ -1186,17 +1186,17 @@ PrefabInstance:
     - target: {fileID: 1538965807100831316, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.03899419
+      value: 0.03899425
       objectReference: {fileID: 0}
     - target: {fileID: 1538965807100831316, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0029574118
+      value: 0.0029574085
       objectReference: {fileID: 0}
     - target: {fileID: 1538965807100831316, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0023715515
+      value: 0.0023716725
       objectReference: {fileID: 0}
     - target: {fileID: 1595621980187237360, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
@@ -1321,17 +1321,17 @@ PrefabInstance:
     - target: {fileID: 6435730744169443010, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.039091934
+      value: -0.03909198
       objectReference: {fileID: 0}
     - target: {fileID: 6435730744169443010, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0029652072
+      value: -0.0029652165
       objectReference: {fileID: 0}
     - target: {fileID: 6435730744169443010, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.052992187
+      value: 0.052992042
       objectReference: {fileID: 0}
     - target: {fileID: 6536271431068950258, guid: 92d6d7b158041c1459c1323964a030da,
         type: 3}
@@ -2128,7 +2128,7 @@ MonoBehaviour:
   weight: 1
   constrained: {fileID: 404278172}
   target: {fileID: 1862975460}
-  updateInEditMode: 1
+  updateInEditMode: 0
   updateMode: 2
   clonePosition: 0
   cloneRotation: 1
@@ -2859,6 +2859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2088851700}
+  - component: {fileID: 2088851701}
   m_Layer: 0
   m_Name: Damping
   m_TagString: Untagged
@@ -2881,6 +2882,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 552874802}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2088851701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088851699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba17981b6177ab64c98890d60879cff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+  constrained: {fileID: 404278172}
+  target: {fileID: 0}
+  updateInEditMode: 0
+  updateMode: 2
+  count: 5
 --- !u!1001 &2117232155
 PrefabInstance:
   m_ObjectHideFlags: 0

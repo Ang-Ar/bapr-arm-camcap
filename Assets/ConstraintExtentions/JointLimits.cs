@@ -30,6 +30,8 @@ public class JointLimits : SimpleConstraintExtension
 
     void OnDrawGizmos()
     {
+        if (!enabled || !gameObject.activeInHierarchy) return;
+
         // TODO: rotate each wedge according to the euler angles before it (gives a more accurate impression while rotating constrained bone)
 
         var axisIndices = AxisUtils.axisIndexFromEnum[(int)axisOrder];

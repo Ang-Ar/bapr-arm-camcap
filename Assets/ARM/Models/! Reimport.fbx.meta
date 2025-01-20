@@ -17,6 +17,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Body.001
+    second: {fileID: 2100000, guid: c46ecdf78fecf7e4a89571ca9fcfbe5c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Hand
     second: {fileID: 2100000, guid: eb4911d3afccc694f886eb7bae13c43f, type: 2}
   - first:
@@ -24,6 +29,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Shoulder
     second: {fileID: 2100000, guid: e6498f3d7806da444b955725d8688b0a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dummy wood
+    second: {fileID: 2100000, guid: c07f3857bb864ba488ceb567b2916b4e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
